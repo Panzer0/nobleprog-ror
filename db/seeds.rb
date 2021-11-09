@@ -8,16 +8,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 25.times do
+    user = Faker::Internet.user('username', 'email')
     User.create!(
-        name: user['username'],
+        username: user['username'],
         email: user['email']
     )
 end
 
 25.times do
-    Post.create!(
+    PostF.create!(
         title: Faker::Lorem.question,
         content: Faker::Lorem.paragraph(sentence_count: rand(5)),
-        user: User.order("random()").first
+        user_id: User.order("random()").first
     )
 end
